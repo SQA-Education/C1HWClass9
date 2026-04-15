@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C1 Job Skills 2 - Class 9: U.S. Holidays and Time Expressions</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#5B5091;min-height:100vh;padding:20px}
+.container{max-width:860px;margin:0 auto}
+.header,.card{background:#fff;border-radius:18px;padding:28px;margin-bottom:18px}
+.header{text-align:center}
+.header h1{color:#5B5091;font-size:1.55em;margin-bottom:6px}
+.header p{color:#777}
+.section{display:none}.section.active{display:block}
+label{font-weight:600;color:#333;display:block;margin-bottom:8px}
+input[type="text"], select, textarea{width:100%;padding:14px;border:2px solid #e0e0e0;border-radius:12px;font-size:16px;font-family:inherit}
+textarea{min-height:160px;resize:vertical}
+input[type="text"]:focus, select:focus, textarea:focus{outline:none;border-color:#5B5091}
+.btn{background:#5B5091;color:#fff;border:none;padding:14px 28px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;width:100%;margin-top:12px}
+.btn:hover{background:#4a4080}.btn-orange{background:#F5A623}
+.progress{height:8px;background:#e0e0e0;border-radius:4px;margin-bottom:18px}
+.progress-bar{height:100%;background:#F5A623;border-radius:4px}
+.reading-box,.question,.feedback,.transcript-box,.tip-box{background:#f8f9fa;border-radius:12px;padding:18px;margin-top:14px;border:1px solid #eee}
+.reading-box{border-left:4px solid #5B5091;line-height:1.7}
+.question h4{margin-bottom:12px;color:#333}
+.option{padding:12px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;margin-top:8px;display:flex;gap:10px;align-items:center}
+.option:hover{border-color:#5B5091;background:#f8f6ff}.option.selected{border-color:#5B5091;background:#f0edff}
+.circle{width:18px;height:18px;border:2px solid #ccc;border-radius:50%;flex-shrink:0}
+.option.selected .circle{background:#5B5091;border-color:#5B5091}
+.word-bank{display:flex;flex-wrap:wrap;gap:10px;padding:15px;background:#f5f5f5;border-radius:12px;margin-top:10px}
+.word{background:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;border:2px solid #e0e0e0}
+.word.selected{border-color:#5B5091;background:#f0edff}.word.used{opacity:.4;pointer-events:none}
+.drop-row{display:flex;gap:12px;align-items:center;margin-top:10px}
+.drop-def{flex:1;background:#f8f9fa;padding:12px;border-radius:8px}
+.drop-target{min-width:130px;min-height:44px;border:2px dashed #ccc;border-radius:8px;padding:10px;text-align:center;cursor:pointer}
+.drop-target.filled{border-style:solid;border-color:#5B5091;background:#f8f6ff}
+.record-btn{width:84px;height:84px;border-radius:50%;background:#fff;border:3px solid #5B5091;cursor:pointer;margin:18px auto;display:flex;align-items:center;justify-content:center}
+.record-btn.recording{border-color:#ef4444;animation:pulse 1.4s infinite}
+.record-dot{width:24px;height:24px;background:#5B5091;border-radius:50%}
+.record-btn.recording .record-dot{background:#ef4444;border-radius:4px;width:20px;height:20px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 15px rgba(239,68,68,0)}}
+.timer{text-align:center;font-size:28px;font-weight:700;color:#5B5091}
+.status{text-align:center;color:#666;margin-top:8px}
+audio{width:100%;margin-top:14px}.hidden{display:none}
+.score-card{background:linear-gradient(135deg,#5B5091,#7B6DB5);border-radius:20px;padding:35px;color:#fff;text-align:center}
+.score-big{font-size:4em;font-weight:700}
+.scores{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+.scores>div{background:rgba(255,255,255,.15);border-radius:12px;padding:10px}
+.scores label{font-size:.75em;color:#fff;opacity:.9}.scores span{font-size:1.3em;font-weight:700;display:block}
+.small{color:#777;margin-top:8px;font-size:14px}
+.note{background:#fff7e8;border:1px solid #f3d796;color:#7a5b00;border-radius:12px;padding:12px;margin-top:12px}
+.tip-box strong{color:#5B5091}
+@media(max-width:700px){.scores{grid-template-columns:repeat(3,1fr)} .drop-row{flex-direction:column;align-items:stretch}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>C1 Job Skills 2 - Class 9: U.S. Holidays and Time Expressions</h1>
+<p style="color:#888;font-size:0.95em">Week 5 - History Highlights and Current Events - U.S. Holidays</p>
+<p style="color:#888;font-size:0.95em;display:none">Week 4 - Thriving Under Pressure - Present Perfect Continuous</p>
+<p>Negotiation at Work • Second Conditional</p>
+</div>
+
+<div class="section active" id="start">
+<div class="card">
+<label>Your Full Name</label>
+<input type="text" id="studentName" placeholder="Enter your name...">
+<input type="hidden" id="teacherName" value="">
+<label>Your Class</label>
+<select id="className" style="width:100%;padding:14px;border:2px solid #e0e0e0;border-radius:12px;font-size:16px;margin-bottom:15px" onchange="setTeacher(this)">
+  <option value="">-- Select your class --</option>
+    <optgroup label="Angela Gradiska">
+    <option value="3091" data-teacher="Angela Gradiska">3091 - Mon/Wed 6:30 PM (Angela)</option>
+    <option value="3093" data-teacher="Angela Gradiska">3093 - Tue/Thu 8:00 PM (Angela)</option>
+  </optgroup>
+</select>
+<button class="btn" onclick="startQuiz()">Start Homework →</button>
+<div class="note">This homework practices Class 9 content: Week 5 - History Highlights and Current Events - U.S. Holidays.</div>
+</div>
+</div>
+
+<div class="section" id="s1">
+<div class="card">
+<div class="progress"><div class="progress-bar" style="width:20%"></div></div>
+<h2>1. Reading</h2>
+<div class="reading-box">
+<p><strong>Planning Around U.S. Holidays</strong></p>
+<p>The U.S. has several major national holidays, each with its own cultural meaning and schedule. Some occur on fixed dates, such as Juneteenth on June 19 and Independence Day on July 4.</p>
+<p>Others are movable dates. For example, Martin Luther King Jr. Day falls on the third Monday in January, while Memorial Day is observed on the last Monday in May.</p>
+<p>When discussing holidays professionally, advanced time expressions matter. People may refer to the day before Thanksgiving, the weekend following Labor Day, or events that happen annually, biannually, or biennially. Knowing these expressions helps you communicate schedules clearly at work and in daily life.</p>
+</div>
+<div id="readingQuestions"></div>
+<button class="btn" onclick="checkS1()">Continue →</button>
+</div>
+</div>
+
+<div class="section" id="s2">
+<div class="card">
+<div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+<h2>2. Vocabulary</h2>
+<p class="small">Match the negotiation word or phrase to its meaning.</p>
+<div class="word-bank" id="wordBank"></div>
+<div id="vocabDrops"></div>
+<button class="btn" onclick="checkS2()">Continue →</button>
+</div>
+</div>
+
+<div class="section" id="s3">
+<div class="card">
+<div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+<h2>3. Writing</h2>
+<p class="small"><strong>Class 9:</strong> U.S. Holidays and Time Expressions: Write 7-9 sentences about one or two U.S. holidays and explain how they are scheduled or observed. Use several advanced time expressions naturally.</p>
+<textarea id="writing" placeholder="A: If you gave me one more day, I would finish the report perfectly.
+B: If we delayed it, the client would be unhappy.
+A: What if we...
+B: ..."></textarea>
+<p class="small" style="text-align:right">Words: <span id="wc">0</span></p>
+<div class="tip-box"><strong>Grammar tip:</strong> Second Conditional = <em>If + past simple, would/could + base verb</em>. Example: <em>If I had more time, I would do a better job.</em> ❌ Don't write: <em>If I would have...</em></div>
+<div id="wFeedback" class="feedback hidden"></div>
+<button class="btn" id="wBtn" onclick="checkWriting()">Get Feedback →</button>
+<button class="btn hidden" id="wNext" onclick="showSection('s4')">Continue →</button>
+</div>
+</div>
+
+<div class="section" id="s4">
+<div class="card">
+<div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+<h2>4. Speaking</h2>
+<p>Speak for 45-60 seconds about a U.S. holiday and compare it to a tradition from your own community or background.</p>
+<div class="record-btn" id="recBtn" onclick="toggleRec()"><div class="record-dot"></div></div>
+<div class="timer" id="timer">0:00</div>
+<div class="status" id="recStatus">Click to start recording</div>
+<audio id="audio" controls class="hidden"></audio>
+<div id="transcriptBox" class="transcript-box hidden"></div>
+<div id="sFeedback" class="feedback hidden"></div>
+<button class="btn" id="sBtn" onclick="checkSpeaking()">Continue →</button>
+</div>
+</div>
+
+<div class="section" id="s5">
+<div class="card">
+<div class="progress"><div class="progress-bar" style="width:100%"></div></div>
+<h2>5. Grammar</h2>
+<div id="grammarQuestions"></div>
+<button class="btn btn-orange" onclick="submitFinal()">Submit Homework ✓</button>
+</div>
+</div>
+
+<div class="section" id="results">
+<div class="score-card">
+<p style="opacity:.85">Homework Complete!</p>
+<div class="score-big" id="finalPct">0%</div>
+<p id="studentDisplay"></p>
+<div class="scores">
+<div><label>Reading</label><span id="scL">0/3</span></div>
+<div><label>Vocab</label><span id="scV">0/6</span></div>
+<div><label>Writing</label><span id="scW">0/20</span></div>
+<div><label>Speaking</label><span id="scS">0/20</span></div>
+<div><label>Grammar</label><span id="scG">0/8</span></div>
+</div>
+<button class="btn btn-orange" style="margin-top:20px" id="submitBtn" onclick="submitToTeacher()">Finish →</button><div id="submitStatus" style="display:none;margin-top:16px;background:#f0fdf4;border:2px solid #22c55e;border-radius:12px;padding:16px;text-align:center;color:#15803d"></div>
+</div>
+</div>
+</div>
+
+<script>let submitted=false;
+function isRealSpeech(t){if(!t||!t.trim())return false;var w=t.trim().split(' ').filter(Boolean);return w.length>=3;}
+function setTeacher(sel){
+  const opt=sel.options[sel.selectedIndex];
+  document.getElementById('teacherName').value=opt?(opt.getAttribute('data-teacher')||''):'';
+}
+
+const SESSION='9';
+let name='',scores={l:0,v:0,w:0,s:0,g:0},writingText='',spokenText='';
+let selectedWord=null,isRec=false,recTime=0,recTimer=null,recognition=null;
+let readingAnswers=[],grammarAnswers=[];
+
+const readingQBank=[
+  {q:"Which is an example of a fixed-date holiday?",opts:["Independence Day","Memorial Day","Presidents Day"],correct:0},
+  {q:"Which holiday falls on the third Monday in January?",opts:["Martin Luther King Jr. Day","Labor Day","Veterans Day"],correct:0},
+  {q:"What does the passage emphasize besides holiday names?",opts:["Time expressions for discussing schedules","Only religious customs","Tax laws"],correct:0},
+  {q:"When is Memorial Day observed?",opts:["Last Monday in May","First Monday in June","Third Monday in May"],correct:0},
+  {q:"Why are precise time expressions useful?",opts:["They help discuss dates and observances accurately","They replace holiday knowledge","They make all holidays the same"],correct:0}
+];
+
+const vocabPairs=[
+  {word:"commemoration",def:"an event that honors something important from the past"},
+  {word:"observance",def:"the practice of following a custom or holiday"},
+  {word:"federal holiday",def:"an official U.S. holiday when government offices close"},
+  {word:"patriotic",def:"showing pride in one's country"},
+  {word:"annually",def:"once every year"},
+  {word:"biennially",def:"every two years"}
+];
+
+const grammarQBank=[
+  {q:"Choose the best sentence:",opts:["Thanksgiving is celebrated on the fourth Thursday in November.","Thanksgiving is celebrated in the fourth Thursday in November.","Thanksgiving celebrates on the fourth Thursday."],correct:0},
+  {q:"Choose the best sentence:",opts:["Juneteenth falls on June 19 every year.","Juneteenth falls in June 19 every year.","Juneteenth falls at June 19 every year."],correct:0},
+  {q:"Choose the best sentence:",opts:["Many people travel the weekend following Labor Day.","Many people travel in the weekend following Labor Day.","Many people travel the weekend followed Labor Day."],correct:0},
+  {q:"Choose the best sentence:",opts:["We usually gather with family the day before Thanksgiving.","We gather on the day before to Thanksgiving.","We gather the day before of Thanksgiving."],correct:0},
+  {q:"Choose the best sentence:",opts:["The event is held annually in late December.","The event is held annual in late December.","The event is held biennially each year."],correct:0},
+  {q:"Choose the best sentence:",opts:["Veterans Day is observed on November 11.","Veterans Day is observed in November 11.","Veterans Day observes on November 11."],correct:0},
+  {q:"Choose the best sentence:",opts:["The third Monday in February is Presidents Day.","The third Monday on February is Presidents Day.","The third Monday at February is Presidents Day."],correct:0},
+  {q:"Choose the best sentence:",opts:["Many neighborhoods organize events the week after Christmas.","Many neighborhoods organize events in the week after Christmas.","Many neighborhoods organize events the week after of Christmas."],correct:0}
+];
+
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function startQuiz(){
+  name=document.getElementById('studentName').value.trim();
+  if(!name){alert('Please enter your name');return;}
+  if(!document.getElementById('className').value){alert('Please select your class');return;}
+  setTeacher(document.getElementById('className'));
+  try{initQuestions();}catch(e){console.log('initQ err:',e);} showSection('s1');
+}
+function sel(el){el.parentElement.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}
+function initQuestions(){
+  const rQs=shuffle([...readingQBank]).slice(0,3);let rHTML='';
+  rQs.forEach((q,i)=>{const opts=q.opts.map((t,idx)=>({text:t,isCorrect:idx===q.correct}));shuffle(opts);readingAnswers[i]=opts.findIndex(o=>o.isCorrect);rHTML+=`<div class="question"><h4>${i+1}. ${q.q}</h4>`;opts.forEach((opt,j)=>rHTML+=`<div class="option" onclick="sel(this)" data-v="${j}"><div class="circle"></div>${opt.text}</div>`);rHTML+='</div>';});
+  document.getElementById('readingQuestions').innerHTML=rHTML;
+  let bankHTML='',dropHTML='';const pairs=shuffle([...vocabPairs]).slice(0,6);const words=shuffle(pairs.map(p=>p.word));
+  words.forEach(w=>bankHTML+=`<div class="word" onclick="pickWord(this)">${w}</div>`);
+  pairs.forEach(p=>dropHTML+=`<div class="drop-row"><div class="drop-def">${p.def}</div><div class="drop-target" data-a="${p.word}" onclick="dropWord(this)"></div></div>`);
+  document.getElementById('wordBank').innerHTML=bankHTML;document.getElementById('vocabDrops').innerHTML=dropHTML;
+  const gQs=shuffle([...grammarQBank]).slice(0,8);let gHTML='';
+  gQs.forEach((q,i)=>{const opts=q.opts.map((t,idx)=>({text:t,isCorrect:idx===q.correct}));shuffle(opts);grammarAnswers[i]=opts.findIndex(o=>o.isCorrect);gHTML+=`<div class="question" data-c="${grammarAnswers[i]}"><h4>${i+1}. ${q.q}</h4>`;opts.forEach((opt,j)=>gHTML+=`<div class="option" onclick="sel(this)" data-v="${j}"><div class="circle"></div>${opt.text}</div>`);gHTML+='</div>';});
+  document.getElementById('grammarQuestions').innerHTML=gHTML;
+}
+function checkS1(){
+  try{
+let c=0;document.querySelectorAll('#readingQuestions .question').forEach((q,i)=>{const s=q.querySelector('.option.selected');if(s&&parseInt(s.dataset.v)===readingAnswers[i])c++;});scores.l=c;
+  }catch(e){console.log('checkS1 err:',e);}finally{showSection('s2');}
+}
+
+function pickWord(el){document.querySelectorAll('.word').forEach(w=>w.classList.remove('selected'));el.classList.add('selected');selectedWord=el;}
+function dropWord(target){if(!selectedWord||target.classList.contains('filled'))return;target.textContent=selectedWord.textContent;target.classList.add('filled');selectedWord.classList.add('used');selectedWord.classList.remove('selected');selectedWord=null;}
+function checkS2(){
+  try{
+let c=0;document.querySelectorAll('.drop-target').forEach(t=>{if(t.textContent===t.dataset.a)c++;});scores.v=c;
+  }catch(e){console.log('checkS2 err:',e);}finally{showSection('s3');}
+}
+
+document.addEventListener('DOMContentLoaded',function(){var we=document.getElementById('writing');if(we)we.addEventListener('input',function(){var wc=document.getElementById('wc');if(wc)wc.textContent=this.value.trim().split(' ').filter(Boolean).length;});});
+function checkWriting(){
+  writingText=document.getElementById('writing').value;
+  const text=writingText.toLowerCase();
+  let score=0;
+  const words=text.trim().split(/\s+/).filter(Boolean);
+  const wordCount=words.length;
+  // Check for Second Conditional patterns: "if + [word] + ed/past" + "would/could"
+  const ifWould=(text.match(/if\s+\w+\s+(had|were|knew|took|gave|accepted|lowered|shared|asked|finished|needed|could|came|went|got|did|made|said|found)\b/g)||[]).length;
+  const wouldCount=(text.match(/\bwould\b|\bcould\b|\bmight\b/g)||[]).length;
+  if(ifWould>=2) score+=8;
+  else if(ifWould===1) score+=4;
+  if(wouldCount>=2) score+=3;
+  else if(wouldCount===1) score+=1;
+  // Dialogue structure
+  const hasDialogue=(text.match(/\b(a:|b:|person 1:|person 2:|manager:|employee:|client:)/g)||[]).length>=2;
+  if(hasDialogue) score+=3;
+  // Vocabulary
+  const vocabWords=['negotiat','raise','compromise','proposal','condition','adjust','accept','deadline','agreement','offer','salary','budget','resourc'];
+  score+=Math.min(4,vocabWords.filter(x=>text.includes(x)).length);
+  // Length
+  if(wordCount>=30) score+=1;
+  if(wordCount>=50) score+=1;
+  score=Math.min(20,Math.max(8,Math.round(score)));
+  scores.w=score;
+  document.getElementById('wFeedback').innerHTML='<b>Score: '+scores.w+'/20</b><br>Scored on use of Second Conditional sentences, dialogue format, and negotiation vocabulary. Clear communication and correct grammar structure matter more than small spelling errors.';
+  document.getElementById('wFeedback').classList.remove('hidden');
+  document.getElementById('wBtn').classList.add('hidden');
+  document.getElementById('wNext').classList.remove('hidden');
+}
+function startSpeechRecognition(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return;speechRec=new SR();speechRec.continuous=false;speechRec.interimResults=true;speechRec.lang='en-US';speechRec.onresult=function(event){let finalTranscript='';for(let i=0;i<event.results.length;i++) finalTranscript+=event.results[i][0].transcript+' ';spokenText=finalTranscript.trim();if(spokenText){const box=document.getElementById('transcriptBox');box.textContent='Transcript: '+spokenText;box.classList.remove('hidden');}};speechRec.start();}
+function stopSpeechRecognition(){if(speechRec){try{speechRec.stop();}catch(e){}}}
+function toggleRec(){if(!isRec) startRec(); else stopRec();}
+function startRec(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('Speech recognition not supported.');return;}
+  spokenText='';
+  const box=document.getElementById('transcriptBox');
+  if(box){box.textContent='';box.classList.add('hidden');}
+  isRec=true;recTime=0;
+  document.getElementById('recBtn').classList.add('recording');
+  document.getElementById('recStatus').textContent='Recording... Click again to stop';
+  recTimer=setInterval(function(){recTime++;document.getElementById('timer').textContent=Math.floor(recTime/60)+':'+String(recTime%60).padStart(2,'0');},1000);
+  recognition=new SR();
+  recognition.continuous=false;recognition.interimResults=false;recognition.lang='en-US';
+  recognition.onresult=function(e){
+    for(var i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)spokenText+=e.results[i][0].transcript+' ';}
+    var tb=document.getElementById('transcriptBox');
+    if(tb){tb.textContent=spokenText.trim();tb.style.display='block';tb.style.visibility='visible';tb.classList.remove('hidden');}
+  };
+  recognition.onerror=function(){};
+  recognition.onend=function(){if(isRec){try{recognition.start();}catch(e){}}};
+  try{recognition.start();}catch(e){}
+}
+function stopRec(){
+  isRec=false;clearInterval(recTimer);
+  if(recognition){try{recognition.stop();}catch(e){} recognition=null;}
+  document.getElementById('recBtn').classList.remove('recording');
+  document.getElementById('recStatus').textContent='Recording saved!';
+  document.getElementById('sBtn').disabled=false;
+}
+
+function checkSpeaking(){const text=spokenText.toLowerCase();let score=recTime>=12?8:recTime>=7?5:2;const items=['would','could','if','negotiat','raise','compromise','accept','agree','condition','proposal','adjust','deadline'];score+=Math.min(6,items.filter(x=>text.includes(x)).length)*2;scores.s=Math.min(20,score);document.getElementById('sFeedback').innerHTML='<b>Score: '+scores.s+'/20</b><br>Speaking is scored on completing the negotiation dialogue and using Second Conditional language clearly.';document.getElementById('sFeedback').classList.remove('hidden');showSection('s5');}
+function submitFinal(){let c=0;document.querySelectorAll('#grammarQuestions .question').forEach((q,i)=>{const s=q.querySelector('.option.selected');const a=parseInt(q.dataset.c);if(s&&parseInt(s.dataset.v)===a)c++;});scores.g=c;const total=scores.l+scores.v+scores.w+scores.s+scores.g;const pct=Math.round(total/57*100);document.getElementById('finalPct').textContent=pct+'%';document.getElementById('studentDisplay').textContent=name;document.getElementById('scL').textContent=scores.l+'/3';document.getElementById('scV').textContent=scores.v+'/6';document.getElementById('scW').textContent=scores.w+'/20';document.getElementById('scS').textContent=scores.s+'/20';document.getElementById('scG').textContent=scores.g+'/8';showSection('results');}
+function submitToTeacher(){
+  if(submitted)return;
+  submitted=true;
+  var btn=document.getElementById('submitBtn');
+  if(btn){btn.disabled=true;btn.textContent='Submitting...';}
+  var cls=document.getElementById('className')?document.getElementById('className').value:'';
+  var tName=document.getElementById('teacherName')?document.getElementById('teacherName').value:'Angela Gradiska';
+  var total=scores.l+scores.v+scores.w+scores.s+scores.g;
+  var pct=Math.round(total/57*100)+'%';
+  var formData=new FormData();
+  formData.append('entry.154629934',name);
+  formData.append('entry.771629595',cls);
+  formData.append('entry.1564061356','9');
+  formData.append('entry.1994438750',scores.l+'/3');
+  formData.append('entry.1169985852',scores.v+'/6');
+  formData.append('entry.66378887',scores.w+'/20');
+  formData.append('entry.665897330',scores.s+'/20');
+  formData.append('entry.1528226896',scores.g+'/8');
+  formData.append('entry.543147037',pct);
+  formData.append('entry.301386877',writingText||'');
+  formData.append('entry.1035810181',spokenText||'No transcript captured');
+  formData.append('entry.1451249480',tName);
+  var status=document.getElementById('submitStatus');
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSdrVV8m2p8QcgXK-ifK2H6By1kwAdcPm-Yp5SyB6DBgfOTiGw/formResponse',{method:'POST',mode:'no-cors',body:formData})
+    .then(function(){
+      if(btn){btn.textContent='Submitted!';btn.style.background='#22c55e';}
+      if(status){status.textContent='Homework submitted! Your teacher received your work.';status.style.display='block';status.style.color='#15803d';}
+    })
+    .catch(function(){
+      submitted=false;
+      if(btn){btn.disabled=false;btn.textContent='Failed - Tap to Retry';btn.style.background='#ef4444';}
+      if(status){status.textContent='Submission failed. Check your internet and try again.';status.style.display='block';status.style.background='#fef2f2';status.style.color='#dc2626';}
+    });
+}
+
+
+
+
+</script>
+</body>
+</html>
