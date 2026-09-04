@@ -487,5 +487,33 @@ try{
 }catch(e){}
 })();
 </script>
+<script>
+/* __sqaSpeakFix — A1-model speaking correction. Before scoring, stop recording and take
+   the transcript from the visible box (or the typed fallback), so students don't get a false 0. */
+(function(){
+try{
+  function best(){
+    var s=(typeof spokenText!=='undefined'&&spokenText)?(''+spokenText):''; s=s.trim();
+    var b=document.getElementById('transcriptBox');
+    if(b){var bt=(b.textContent||'').trim(); if(/^transcript:/i.test(bt)){bt=bt.replace(/^transcript:\s*/i,'').trim(); if(bt.length>s.length)s=bt;}}
+    var ty=document.getElementById('sqaTypeSpeak'); if((!s||s.length<2)&&ty&&(ty.value||'').trim())s=(ty.value||'').trim();
+    return s;
+  }
+  function wrap(){
+    if(typeof window.checkSpeaking!=='function'||window.checkSpeaking.__patched)return typeof window.checkSpeaking==='function';
+    var orig=window.checkSpeaking;
+    window.checkSpeaking=function(){
+      try{
+        if(typeof isRec!=='undefined'&&isRec){try{if(typeof stopRec==='function')stopRec();else if(typeof toggleRec==='function')toggleRec();}catch(e){}}
+        var s=best(); if(s){try{spokenText=s;}catch(e){}}
+      }catch(e){}
+      return orig.apply(this,arguments);
+    };
+    window.checkSpeaking.__patched=true; return true;
+  }
+  if(!wrap()){var n=0,iv=setInterval(function(){if(wrap()||++n>40)clearInterval(iv);},150);}
+}catch(e){}
+})();
+</script>
 </body>
 </html>
