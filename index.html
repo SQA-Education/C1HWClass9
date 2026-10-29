@@ -603,5 +603,39 @@ try{
   }catch(e){}
 })();
 </script>
+
+<script>
+/* SQA C1 speaking scoring v2 (2026-10-29): no transcript = no score (ask to retry/type);
+   otherwise AI scores the ACTUAL spoken answer out of 20. Additive override; recording untouched. */
+(function(){
+  var EP='https://ponilnhyehnzycspksah.supabase.co/functions/v1/transcribe-drive';
+  function patch(){
+    if(window.checkSpeaking&&window.checkSpeaking.__aiPatched) return true;
+    if(typeof window.checkSpeaking!=='function') return false;
+    window.checkSpeaking=function(){
+      try{ if(typeof isRec!=='undefined'&&isRec&&typeof stopRec==='function') stopRec(); }catch(e){}
+      var t='';
+      try{ if(typeof spokenText!=='undefined'&&spokenText) t=(''+spokenText).trim(); }catch(e){}
+      if(t.length<2&&window.__typedSpeech) t=(''+window.__typedSpeech).trim();
+      if(t.length<2){ try{var b=document.getElementById('transcriptBox')||document.getElementById('transcript');if(b){var bt=((b.value||b.textContent)||'').replace(/^transcript:\s*/i,'').trim();if(bt.length>1)t=bt;}}catch(e){} }
+      var fb=document.getElementById('sFeedback');
+      if(t.length<2){ if(fb){fb.innerHTML='<b>We didn’t catch what you said.</b><br>Please tap the circle and record again, speaking clearly — or type what you said in the box below — then press Continue.';fb.classList.remove('hidden');} try{var ts=document.getElementById('sqaTypeSpeak');if(ts){ts.scrollIntoView({behavior:'smooth',block:'center'});ts.focus();}}catch(e){} return; }
+      var sBtn=document.getElementById('sBtn');
+      var taskEl=document.querySelector('#s4 .small')||document.querySelector('#s4 p');
+      var task=taskEl?(taskEl.textContent||'').trim():'';
+      var level=(typeof LV!=='undefined'&&LV)?LV:'C1';
+      if(fb){fb.innerHTML='⏳ Scoring your answer…';fb.classList.remove('hidden');}
+      if(sBtn)sBtn.disabled=true;
+      var finish=function(sc,reason){ try{if(window.scores)window.scores.s=sc;}catch(e){} try{scores.s=sc;}catch(e){} if(fb){fb.innerHTML='<b>Score: '+sc+'/20</b>'+(reason?('<br>'+reason):'');fb.classList.remove('hidden');} if(sBtn)sBtn.disabled=false; try{showSection('s5');}catch(e){} };
+      fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({scoreSpeaking:true,transcript:t,task:task,level:level})})
+        .then(function(r){return r.json();})
+        .then(function(d){ if(d&&typeof d.score==='number') finish(d.score,d.reason||''); else finish(10,'Saved — your teacher will review your speaking.'); })
+        .catch(function(){ finish(10,'Saved — your teacher will review your speaking.'); });
+    };
+    window.checkSpeaking.__aiPatched=true; return true;
+  }
+  if(!patch()){ document.addEventListener('DOMContentLoaded',patch); window.addEventListener('load',patch); var n=0,iv=setInterval(function(){ if(patch()||++n>40) clearInterval(iv); },150); }
+})();
+</script>
 </body>
 </html>
