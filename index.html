@@ -625,12 +625,12 @@ try{
       var task=taskEl?(taskEl.textContent||'').trim():'';
       var level=(typeof LV!=='undefined'&&LV)?LV:'C1';
       if(fb){fb.innerHTML='⏳ Scoring your answer…';fb.classList.remove('hidden');}
-      if(sBtn)sBtn.disabled=true;
+      if(sBtn)sBtn.disabled=true;var __d=false,__t;var safeFinish=function(sc,reason){if(__d)return;__d=true;clearTimeout(__t);finish(sc,reason);};__t=setTimeout(function(){safeFinish(10,'Saved — your teacher will review your speaking.');},15000);
       var finish=function(sc,reason){ try{if(window.scores)window.scores.s=sc;}catch(e){} try{scores.s=sc;}catch(e){} if(fb){fb.innerHTML='<b>Score: '+sc+'/20</b>'+(reason?('<br>'+reason):'');fb.classList.remove('hidden');} if(sBtn)sBtn.disabled=false; try{showSection('s5');}catch(e){} };
       fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({scoreSpeaking:true,transcript:t,task:task,level:level})})
         .then(function(r){return r.json();})
-        .then(function(d){ if(d&&typeof d.score==='number') finish(d.score,d.reason||''); else finish(10,'Saved — your teacher will review your speaking.'); })
-        .catch(function(){ finish(10,'Saved — your teacher will review your speaking.'); });
+        .then(function(d){ if(d&&typeof d.score==='number') safeFinish(d.score,d.reason||''); else safeFinish(10,'Saved — your teacher will review your speaking.'); })
+        .catch(function(){ safeFinish(10,'Saved — your teacher will review your speaking.'); });
     };
     window.checkSpeaking.__aiPatched=true; return true;
   }
