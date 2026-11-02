@@ -637,5 +637,6 @@ try{
   if(!patch()){ document.addEventListener('DOMContentLoaded',patch); window.addEventListener('load',patch); var n=0,iv=setInterval(function(){ if(patch()||++n>40) clearInterval(iv); },150); }
 })();
 </script>
+<script>/* __vocabGuard — block advancing past vocab with empty drop-targets (was silently scoring 0) */(function(){if(window.__vocabGuard)return;window.__vocabGuard=1;document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button,.btn');if(!b)return;var sec=b.closest&&b.closest('.section');if(!sec)return;var tg=sec.querySelectorAll('.drop-target');if(!tg.length)return;var t=(b.textContent||'').toLowerCase();if(t.indexOf('continue')<0&&t.indexOf('next')<0)return;var empty=0;tg.forEach(function(x){if(!(x.textContent||'').trim())empty++;});if(empty>0){e.preventDefault();e.stopImmediatePropagation();alert('Please place all '+tg.length+' vocabulary words before continuing \u2014 otherwise this section scores 0/'+tg.length+'.');}},true);})();</script>
 </body>
 </html>
