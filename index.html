@@ -638,5 +638,14 @@ try{
 })();
 </script>
 <script>/* __vocabGuard — block advancing past vocab with empty drop-targets (was silently scoring 0) */(function(){if(window.__vocabGuard)return;window.__vocabGuard=1;document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button,.btn');if(!b)return;var sec=b.closest&&b.closest('.section');if(!sec)return;var tg=sec.querySelectorAll('.drop-target');if(!tg.length)return;var t=(b.textContent||'').toLowerCase();if(t.indexOf('continue')<0&&t.indexOf('next')<0)return;var empty=0;tg.forEach(function(x){if(!(x.textContent||'').trim())empty++;});if(empty>0){e.preventDefault();e.stopImmediatePropagation();alert('Please place all '+tg.length+' vocabulary words before continuing \u2014 otherwise this section scores 0/'+tg.length+'.');}},true);})();</script>
+<script>/* __sqaTypeResume (2026-11-16): after "Welcome back → Continue" the speaking section is rebuilt and the
+   "type what you said" box loses its listener, so Continue kept saying "We didn't catch what you said".
+   Delegated listener survives the rebuild; also read the box directly when Continue is pressed. */
+(function(){if(window.__sqaTypeResume)return;window.__sqaTypeResume=1;
+function feed(v){window.__typedSpeech=v;try{spokenText=v;}catch(e){}var b=document.getElementById('sBtn');if(b&&v.trim().length>1){b.disabled=false;b.removeAttribute('disabled');}}
+document.addEventListener('input',function(e){var x=e.target;if(x&&x.id==='sqaTypeSpeak')feed(x.value||'');},true);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#sBtn');if(!b)return;var ts=document.getElementById('sqaTypeSpeak');if(ts&&(ts.value||'').trim().length>1)feed(ts.value);},true);
+})();</script>
+
 </body>
 </html>
