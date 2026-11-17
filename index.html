@@ -53,7 +53,7 @@ audio{width:100%;margin-top:14px}.hidden{display:none}
 .tip-box strong{color:#5B5091}
 @media(max-width:700px){.scores{grid-template-columns:repeat(3,1fr)} .drop-row{flex-direction:column;align-items:stretch}}
 </style>
-</head>
+<style>/* __sqaNoPullRefresh: stop accidental pull-to-refresh wiping homework */html,body{overscroll-behavior-y:contain}</style></head>
 <body>
 <div class="container">
 <div class="header">
@@ -473,7 +473,7 @@ try{
   function activeSec(){var s=document.querySelector('.section.active');return s?s.id:'';}
   function secs(){return Array.prototype.slice.call(document.querySelectorAll('.section[id]'));}
   function fields(){return Array.prototype.slice.call(document.querySelectorAll('input,textarea,select'));}
-  function isResults(s){return /result|score/i.test(s)||s==='s5'||s==='s6';}
+  function isResults(s){if(/result|score/i.test(s))return true;var a=secs();return !!(a.length&&a[a.length-1].id===s&&(s==='s5'||s==='s6'));}
   var t=null, ind=null;
   function flash(){if(!ind){ind=document.createElement('div');ind.style.cssText='position:fixed;bottom:14px;right:14px;background:#1e9e5a;color:#fff;padding:7px 13px;border-radius:20px;font:600 13px system-ui;z-index:99998;opacity:0;transition:opacity .3s;box-shadow:0 3px 12px rgba(0,0,0,.2)';ind.textContent='✓ Saved';document.body.appendChild(ind);}ind.style.opacity='1';clearTimeout(ind._t);ind._t=setTimeout(function(){ind.style.opacity='0';},1200);}
   function snap(){var st={sec:activeSec(),h:{},f:[],g:{},t:Date.now()};
