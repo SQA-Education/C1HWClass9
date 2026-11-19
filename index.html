@@ -60,7 +60,6 @@ audio{width:100%;margin-top:14px}.hidden{display:none}
 <h1>C1 Job Skills 2 - Class 9: U.S. Holidays and Time Expressions</h1>
 <p style="color:#888;font-size:0.95em">Week 5 - History Highlights and Current Events - U.S. Holidays</p>
 <p style="color:#888;font-size:0.95em;display:none">Week 4 - Thriving Under Pressure - Present Perfect Continuous</p>
-<p>Negotiation at Work • Second Conditional</p>
 </div>
 
 <div class="section active" id="start">
@@ -99,7 +98,7 @@ audio{width:100%;margin-top:14px}.hidden{display:none}
 <div class="card">
 <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
 <h2>2. Vocabulary</h2>
-<p class="small">Match the negotiation word or phrase to its meaning.</p>
+<p class="small">Match the holiday word or phrase to its meaning.</p>
 <div class="word-bank" id="wordBank"></div>
 <div id="vocabDrops"></div>
 <button class="btn" onclick="checkS2()">Continue →</button>
@@ -110,12 +109,10 @@ audio{width:100%;margin-top:14px}.hidden{display:none}
 <div class="card">
 <div class="progress"><div class="progress-bar" style="width:60%"></div></div>
 <h2>3. Writing</h2>
-<p class="small"><strong>Class 9:</strong> U.S. Holidays and Time Expressions: Create a dialogue (7–9 sentences) scheduling a celebration for a U.S. holiday. Talk about when the holiday is observed and when your event will be. Use several advanced time expressions naturally.</p>
-<textarea id="writing" placeholder="A: If we had the event on Saturday, it would be closer to the actual holiday.
-B: That is true. The holiday is on the 4th, and Saturday is the 1st.
-A: ..."></textarea>
+<p class="small"><strong>Class 9:</strong> U.S. Holidays and Time Expressions: Write a paragraph about ONE U.S. holiday. Use the advanced time expressions at least twice. Include: when this holiday is observed, what happens before the holiday, how people prepare, and give some cultural advice for celebrating this holiday.</p>
+<textarea id="writing" placeholder="Thanksgiving is a popular U.S. holiday. It is celebrated on the fourth Thursday in November every year. People usually…"></textarea>
 <p class="small" style="text-align:right">Words: <span id="wc">0</span></p>
-<div class="tip-box"><strong>Grammar tip:</strong> Second Conditional = <em>If + past simple, would/could + base verb</em>. Example: <em>If I had more time, I would do a better job.</em> ❌ Don't write: <em>If I would have...</em></div>
+<div class="tip-box"><strong>Advanced Time expressions:</strong> <b>Fixed dates</b> (<em>on December 25th</em>, <em>falls on a Friday this year</em>), <b>Movable dates</b> (<em>the third Monday in January</em>, <em>the last Monday in May</em>), <b>Relative time</b> (<em>the day before Thanksgiving</em>, <em>the weekend following Labor Day</em>), <b>Frequency</b> (<em>once a year</em>, <em>annually</em>).</div>
 <div id="wFeedback" class="feedback hidden"></div>
 <button class="btn" id="wBtn" onclick="checkWriting()">Get Feedback →</button>
 <button class="btn hidden" id="wNext" onclick="showSection('s4')">Continue →</button>
@@ -246,25 +243,29 @@ function checkWriting(){
   let score=0;
   const words=text.trim().split(/\s+/).filter(Boolean);
   const wordCount=words.length;
-  // Check for Second Conditional patterns: "if + [word] + ed/past" + "would/could"
-  const ifWould=(text.match(/if\s+\w+\s+(had|were|knew|took|gave|accepted|lowered|shared|asked|finished|needed|could|came|went|got|did|made|said|found)\b/g)||[]).length;
-  const wouldCount=(text.match(/\bwould\b|\bcould\b|\bmight\b/g)||[]).length;
-  if(ifWould>=2) score+=8;
-  else if(ifWould===1) score+=4;
-  if(wouldCount>=2) score+=3;
-  else if(wouldCount===1) score+=1;
-  // Dialogue structure
-  const hasDialogue=(text.match(/\b(a:|b:|person 1:|person 2:|manager:|employee:|client:)/g)||[]).length>=2;
-  if(hasDialogue) score+=3;
-  // Vocabulary
-  const vocabWords=['the week of','the day before','the day after','as soon as','leading up to','in advance','ahead of','the following','by then','until','observ','schedul','celebrat','anniversary','every year','annual'];
-  score+=Math.min(4,vocabWords.filter(x=>text.includes(x)).length);
+  // Advanced time expressions (fixed, movable, relative, frequency) — must be used at least twice
+  const M='(january|february|march|april|may|june|july|august|september|october|november|december)';
+  const D='(monday|tuesday|wednesday|thursday|friday|saturday|sunday)';
+  const timeRx=[new RegExp('\\bon '+M+' \\d'),new RegExp('\\b'+M+' \\d{1,2}(st|nd|rd|th)?\\b'),/\bfalls on\b/,
+    new RegExp('\\b(first|second|third|fourth|last) '+D+' (in|of) '),/\bthe (day|days|week|weekend|night|month) (before|after|following|leading up to)\b/,
+    /\bleading up to\b/,/\bin advance\b/,/\bahead of\b/,/\bonce a year\b/,/\bannually\b/,/\bevery year\b/,/\beach year\b/,/\btwice a year\b/,/\bbienniall?y\b/];
+  const timeCount=timeRx.filter(r=>r.test(text)).length;
+  if(timeCount>=2) score+=8;
+  else if(timeCount===1) score+=4;
+  // Required content: when it is observed, what happens before / how people prepare, cultural advice
+  if(/\b(celebrated|observed|takes place|is on|falls on|happens on)\b/.test(text)) score+=2;
+  if(/\b(before|prepar|get ready|buy|plan|decorat|cook|travel)/.test(text)) score+=2;
+  if(/\b(should|make sure|don't forget|do not forget|remember to|it's a good idea|it is a good idea|recommend|advice|be sure to|try to)\b/.test(text)) score+=2;
+  // Names ONE U.S. holiday
+  if(/(thanksgiving|christmas|new year|independence day|fourth of july|4th of july|labor day|memorial day|veterans day|juneteenth|martin luther king|mlk day|presidents'? day|columbus day|indigenous peoples|halloween|valentine|easter|mother's day|father's day)/.test(text)) score+=2;
+  // Paragraph (at least 5 sentences)
+  if((writingText.match(/[.!?](\s|$)/g)||[]).length>=5) score+=2;
   // Length
   if(wordCount>=30) score+=1;
   if(wordCount>=50) score+=1;
   score=Math.min(20,Math.max(8,Math.round(score)));
   scores.w=score;
-  document.getElementById('wFeedback').innerHTML='<b>Score: '+scores.w+'/20</b><br>Scored on use of Second Conditional sentences, dialogue format, and advanced time expressions. Clear communication and correct grammar structure matter more than small spelling errors.';
+  document.getElementById('wFeedback').innerHTML='<b>Score: '+scores.w+'/20</b><br>Scored on using advanced time expressions, explaining when the holiday is observed, how people prepare, and giving cultural advice. Clear communication and correct grammar structure matter more than small spelling errors.';
   document.getElementById('wFeedback').classList.remove('hidden');
   document.getElementById('wBtn').classList.add('hidden');
   document.getElementById('wNext').classList.remove('hidden');
@@ -301,7 +302,7 @@ function stopRec(){
   document.getElementById('sBtn').disabled=false;
 }
 
-function checkSpeaking(){const text=spokenText.toLowerCase();let score=recTime>=12?8:recTime>=7?5:2;const items=['would','could','if','negotiat','raise','compromise','accept','agree','condition','proposal','adjust','deadline'];score+=Math.min(6,items.filter(x=>text.includes(x)).length)*2;scores.s=Math.min(20,score);document.getElementById('sFeedback').innerHTML='<b>Score: '+scores.s+'/20</b><br>Speaking is scored on completing the negotiation dialogue and using Second Conditional language clearly.';document.getElementById('sFeedback').classList.remove('hidden');showSection('s5');}
+function checkSpeaking(){const text=spokenText.toLowerCase();let score=recTime>=12?8:recTime>=7?5:2;const items=['holiday','celebrat','tradition','observ','in my country','similar','different','compar','every year','annual','the day before','family'];score+=Math.min(6,items.filter(x=>text.includes(x)).length)*2;scores.s=Math.min(20,score);document.getElementById('sFeedback').innerHTML='<b>Score: '+scores.s+'/20</b><br>Speaking is scored on describing a U.S. holiday, comparing it to a tradition from your background, and using time expressions clearly.';document.getElementById('sFeedback').classList.remove('hidden');showSection('s5');}
 function submitFinal(){let c=0;document.querySelectorAll('#grammarQuestions .question').forEach((q,i)=>{const s=q.querySelector('.option.selected');const a=parseInt(q.dataset.c);if(s&&parseInt(s.dataset.v)===a)c++;});scores.g=c;scores.l=0;document.querySelectorAll('#readingQuestions .question').forEach(function(q){var s=q.querySelector('.option.selected');if(s&&parseInt(s.dataset.v)===parseInt(q.dataset.c))scores.l++;});scores.v=0;document.querySelectorAll('.drop-target').forEach(function(t){if(t.textContent===t.dataset.a)scores.v++;});const total=scores.l+scores.v+scores.w+scores.s+scores.g;const pct=Math.round(total/57*100);document.getElementById('finalPct').textContent=pct+'%';document.getElementById('studentDisplay').textContent=name;document.getElementById('scL').textContent=scores.l+'/3';document.getElementById('scV').textContent=scores.v+'/6';document.getElementById('scW').textContent=scores.w+'/20';document.getElementById('scS').textContent=scores.s+'/20';document.getElementById('scG').textContent=scores.g+'/8';showSection('results');}
 function submitToTeacher(){
   if(submitted)return;
